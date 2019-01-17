@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="didastudy.dao.NucDidaUserMapper" >
+  <resultMap id="BaseResultMap" type="didastudy.entity.NucDidaUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="number" property="number" jdbcType="VARCHAR" />
+    <id column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="college" property="college" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="background_image" property="backgroundImage" jdbcType="VARCHAR" />
+    <result column="face" property="face" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt _ modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from nuc_dida_user
+    where id = #{id,jdbcType=BIGINT}
+      and number = #{number,jdbcType=VARCHAR}
+      and phone = #{phone,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="didastudy.entity.NucDidaUser" >
+    insert into nuc_dida_user (id, number, phone, 
+      name, college, email, 
+      status, message, background_image, 
+      face, qq, type, gmt_create, 
+      "gmt _ modified")
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, #{backgroundImage,jdbcType=VARCHAR}, 
+      #{face,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="didastudy.entity.NucDidaUser" >
+    update nuc_dida_user
+    set name = #{name,jdbcType=VARCHAR},
+      college = #{college,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR},
+      background_image = #{backgroundImage,jdbcType=VARCHAR},
+      face = #{face,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      "gmt _ modified" = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+      and number = #{number,jdbcType=VARCHAR}
+      and phone = #{phone,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+    select id, number, phone, name, college, email, status, message, background_image, 
+    face, qq, type, gmt_create, "gmt _ modified"
+    from nuc_dida_user
+    where id = #{id,jdbcType=BIGINT}
+      and number = #{number,jdbcType=VARCHAR}
+      and phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, number, phone, name, college, email, status, message, background_image, 
+    face, qq, type, gmt_create, "gmt _ modified"
+    from nuc_dida_user
+  </select>
+</mapper>

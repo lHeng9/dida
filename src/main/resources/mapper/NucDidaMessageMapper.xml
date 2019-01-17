@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="didastudy.dao.NucDidaMessageMapper" >
+  <resultMap id="BaseResultMap" type="didastudy.entity.NucDidaMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="object_id" property="objectId" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from nuc_dida_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="didastudy.entity.NucDidaMessage" >
+    insert into nuc_dida_message (id, gmt_create, gmt_modified, 
+      user_id, object_id, content, 
+      type)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=BIGINT}, #{objectId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{type,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="didastudy.entity.NucDidaMessage" >
+    update nuc_dida_message
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      object_id = #{objectId,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, gmt_create, gmt_modified, user_id, object_id, content, type
+    from nuc_dida_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, gmt_create, gmt_modified, user_id, object_id, content, type
+    from nuc_dida_message
+  </select>
+</mapper>

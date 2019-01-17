@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="didastudy.dao.NucDidaLivenessMapper" >
+  <resultMap id="BaseResultMap" type="didastudy.entity.NucDidaLiveness" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="post_num" property="postNum" jdbcType="INTEGER" />
+    <result column="reply_num" property="replyNum" jdbcType="INTEGER" />
+    <result column="signin_num" property="signinNum" jdbcType="INTEGER" />
+    <result column="continuous_num" property="continuousNum" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="integral_id" property="integralId" jdbcType="BIGINT" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="VARCHAR" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from nuc_dida_liveness
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="didastudy.entity.NucDidaLiveness" >
+    insert into nuc_dida_liveness (id, post_num, reply_num, 
+      signin_num, continuous_num, number, 
+      integral_id, gmt_create, gmt_modified
+      )
+    values (#{id,jdbcType=BIGINT}, #{postNum,jdbcType=INTEGER}, #{replyNum,jdbcType=INTEGER}, 
+      #{signinNum,jdbcType=INTEGER}, #{continuousNum,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
+      #{integralId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=VARCHAR}, #{gmtModified,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="didastudy.entity.NucDidaLiveness" >
+    update nuc_dida_liveness
+    set post_num = #{postNum,jdbcType=INTEGER},
+      reply_num = #{replyNum,jdbcType=INTEGER},
+      signin_num = #{signinNum,jdbcType=INTEGER},
+      continuous_num = #{continuousNum,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      integral_id = #{integralId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=VARCHAR},
+      gmt_modified = #{gmtModified,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, post_num, reply_num, signin_num, continuous_num, number, integral_id, 
+    gmt_create, gmt_modified
+    from nuc_dida_liveness
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, post_num, reply_num, signin_num, continuous_num, number, integral_id, 
+    gmt_create, gmt_modified
+    from nuc_dida_liveness
+  </select>
+</mapper>

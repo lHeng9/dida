@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="didastudy.dao.NucDidaIntegralMapper" >
+  <resultMap id="BaseResultMap" type="didastudy.entity.NucDidaIntegral" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="collected_num" property="collectedNum" jdbcType="INTEGER" />
+    <result column="attention_num" property="attentionNum" jdbcType="INTEGER" />
+    <result column="approval_num" property="approvalNum" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from nuc_dida_integral
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="didastudy.entity.NucDidaIntegral" >
+    insert into nuc_dida_integral (id, user_id, collected_num, 
+      attention_num, approval_num, number, 
+      gmt_create, gmt_modified)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{collectedNum,jdbcType=INTEGER}, 
+      #{attentionNum,jdbcType=INTEGER}, #{approvalNum,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="didastudy.entity.NucDidaIntegral" >
+    update nuc_dida_integral
+    set user_id = #{userId,jdbcType=BIGINT},
+      collected_num = #{collectedNum,jdbcType=INTEGER},
+      attention_num = #{attentionNum,jdbcType=INTEGER},
+      approval_num = #{approvalNum,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, user_id, collected_num, attention_num, approval_num, number, gmt_create, 
+    gmt_modified
+    from nuc_dida_integral
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, user_id, collected_num, attention_num, approval_num, number, gmt_create, 
+    gmt_modified
+    from nuc_dida_integral
+  </select>
+</mapper>
